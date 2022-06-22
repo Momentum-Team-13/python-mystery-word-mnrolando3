@@ -29,26 +29,26 @@ def submit_guess():
     user_guess = input('Guess a letter: ')
     return user_guess
 
-def make_display(file):
-    display = '_ '*len(file)
-    return display
+# def make_display(file):
+#     display = ['_'*len(file)]
+#     return display
 
 def track_state(file):
     correct_letters=[]
     incorrect_letters=[]
     while len(incorrect_letters) < 8:
-        display = make_display(file)
-        print (display)
+        print ('_'*(len(file)-len(correct_letters)) + str(correct_letters))
         letter = submit_guess()
         if letter.isalpha() and len(letter) == 1:
-            uppercase_guess = letter.upper()
+            lowercase_guess = letter.lower()
             # print(f"You guessed '{lowercase_guess}'")
-            if uppercase_guess in file:
-                correct_letters.append(uppercase_guess)
-                print(f'Correct! {uppercase_guess} is in the word.')
+            if lowercase_guess in file:
+                correct_letters.append(lowercase_guess)
+                print(f'Correct! {lowercase_guess} is in the word.')
+                # print('_'*(len(file)-len(correct_letters)) + str(correct_letters))
             else: 
-                print(f'{uppercase_guess} is not in the word.')
-                incorrect_letters.append(uppercase_guess)
+                print(f'{lowercase_guess} is not in the word.')
+                incorrect_letters.append(lowercase_guess)
         else:
             print(f'That guess wasn\'t valid. Please try again.')
         print(f'Letters already guessed:{incorrect_letters + correct_letters}')
