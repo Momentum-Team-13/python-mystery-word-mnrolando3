@@ -3,7 +3,7 @@ import random
 
 
 def open_file():
-    file = 'words.txt'
+    file = 'test-word.txt'
     # print(f'Your file is: {file}')
     with open(file) as open_file:
         read_file = open_file.readlines()
@@ -51,16 +51,19 @@ def track_state(file):
             lowercase_guess = letter.lower()
             # if submitted guess is alphabetic and one character, convert to lowercase
             if lowercase_guess in file:
-                correct_letters.append(lowercase_guess)
-                print(f'Correct! {lowercase_guess} is in the word.')
-                display = [(letter.replace(letter, "_")) if letter not in correct_letters else letter for letter in file]
-                print(display)
-                # if guess is in file, add to correct letters list and replace underscore in display
-                if display == correct_letters:
-                    print('You won!')
-                    break
-                    # if display list matches correct letters list, break loop
-            else: 
+                if lowercase_guess not in correct_letters:
+                    correct_letters.append(lowercase_guess)
+                    print(f'Correct! {lowercase_guess} is in the word.')
+                    display = [(letter.replace(letter, "_")) if letter not in correct_letters else letter for letter in file]
+                    print(display)
+                    # if guess is in file and not in correct letters already, add to correct letters list and replace underscore in display
+                    if display == correct_letters:
+                        print('You won!')
+                        break
+                        # if display list matches correct letters list, break loop
+                else:
+                    print('You already guessed that. Try again.')
+            else:
                 print(f'{lowercase_guess} is not in the word.')
                 incorrect_letters.append(lowercase_guess)
                 # if guess is not in file, add to incorrect letters list
@@ -86,8 +89,8 @@ def play_game():
     # # prints the word randomly selected by the pick_word function
     letters_to_guess = make_letter_list(computer_word)
     # establishes variable to call make_letter_list function with previous var as arg
-    # print(letters_to_guess)
-    # # prints letters of the randomly selected word as a list
+    print(letters_to_guess)
+    # prints letters of the randomly selected word as a list
     track_state(letters_to_guess)
     # calls track_state function with previous variable as argument
 
