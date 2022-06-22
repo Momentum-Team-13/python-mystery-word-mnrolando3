@@ -25,7 +25,7 @@ def make_letter_list(file):
         letter_list.append(letter)
     return letter_list
 
-def submit_guess(file):
+def submit_guess():
     user_guess = input('Guess a letter: ')
     if user_guess.isalpha() and len(user_guess) == 1:
         lowercase_guess = user_guess.lower()
@@ -33,7 +33,26 @@ def submit_guess(file):
         return lowercase_guess
     else:
         print(f'That guess wasn\'t valid. Please try again.')
-        return submit_guess(file)
+
+# def make_display(file):
+
+#     return display
+
+def track_state(file):
+    display = '_ '*len(file)
+    print(display)
+    correct_letters=[]
+    incorrect_letters=[]
+    while len(incorrect_letters) < 8:
+        letter = submit_guess()
+        if letter in file:
+            correct_letters.append(letter)
+            print(f'Correct! {letter} is in the word.')
+        else: 
+            print(f'{letter} is not in the word.')
+            incorrect_letters.append(letter)
+        print(f'Correct letters:{correct_letters}')
+        print(f'Incorrect letters:{incorrect_letters}')
 
 def play_game():
     file_opened = open_file()
@@ -48,7 +67,9 @@ def play_game():
     # print(letters_to_guess)
     # # prints letters of the randomly selected word as a list
 
-    submit_guess(letters_to_guess)
+    # spaces_in_word = make_display(letters_to_guess)
+
+    track_state(letters_to_guess)
     # allows user to submit a guess
 
 if __name__ == "__main__":
