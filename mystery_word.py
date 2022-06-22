@@ -27,32 +27,32 @@ def make_letter_list(file):
 
 def submit_guess():
     user_guess = input('Guess a letter: ')
-    if user_guess.isalpha() and len(user_guess) == 1:
-        lowercase_guess = user_guess.lower()
-        print(f'You guessed {lowercase_guess}')
-        return lowercase_guess
-    else:
-        print(f'That guess wasn\'t valid. Please try again.')
+    return user_guess
 
-# def make_display(file):
-
-#     return display
+def make_display(file):
+    display = '_ '*len(file)
+    return display
 
 def track_state(file):
-    display = '_ '*len(file)
-    print(display)
     correct_letters=[]
     incorrect_letters=[]
     while len(incorrect_letters) < 8:
+        display = make_display(file)
+        print (display)
         letter = submit_guess()
-        if letter in file:
-            correct_letters.append(letter)
-            print(f'Correct! {letter} is in the word.')
-        else: 
-            print(f'{letter} is not in the word.')
-            incorrect_letters.append(letter)
-        print(f'Correct letters:{correct_letters}')
-        print(f'Incorrect letters:{incorrect_letters}')
+        if letter.isalpha() and len(letter) == 1:
+            uppercase_guess = letter.upper()
+            # print(f"You guessed '{lowercase_guess}'")
+            if uppercase_guess in file:
+                correct_letters.append(uppercase_guess)
+                print(f'Correct! {uppercase_guess} is in the word.')
+            else: 
+                print(f'{uppercase_guess} is not in the word.')
+                incorrect_letters.append(uppercase_guess)
+        else:
+            print(f'That guess wasn\'t valid. Please try again.')
+        print(f'Letters already guessed:{incorrect_letters + correct_letters}')
+    print('Game over!')
 
 def play_game():
     file_opened = open_file()
@@ -67,10 +67,10 @@ def play_game():
     # print(letters_to_guess)
     # # prints letters of the randomly selected word as a list
 
-    # spaces_in_word = make_display(letters_to_guess)
+    # display_letters = make_display(letters_to_guess)
+    # print(display_letters)
 
     track_state(letters_to_guess)
-    # allows user to submit a guess
 
 if __name__ == "__main__":
     play_game()
