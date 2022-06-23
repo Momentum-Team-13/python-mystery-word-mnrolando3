@@ -53,23 +53,23 @@ def track_state(file):
             if lowercase_guess in file:
                 if lowercase_guess not in correct_letters:
                     correct_letters.append(lowercase_guess)
-                    print(f'Correct! {lowercase_guess} is in the word.')
+                    print(f'\nCorrect! {lowercase_guess} is in the word.\n')
                     # if guess is in file and not in correct letters already
                     # add to correct letters list and replace in display
                     if display == file:
-                        print('You won!')
+                        print('\nYou won!')
                         break
                         # if display list matches correct letters list
                         # break loop
                 else:
-                    print('You already guessed that. Try again.')
+                    print('\nYou already guessed that. Try again.\n')
             else:
                 print(f'\n{lowercase_guess} is not in the word. \n')
                 incorrect_letters.append(lowercase_guess)
                 # if guess is not in file
                 # add to incorrect letters list
         else:
-            print('That guess wasn\'t valid. Please try again.\n')
+            print('\nThat guess wasn\'t valid. Please try again.\n')
             # if submitted guess is not alphabetic or one character
             # tell user
         display = [(letter.replace(letter, '_')) if letter not in correct_letters else letter for letter in file]
