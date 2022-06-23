@@ -85,7 +85,8 @@ def track_state(file):
             # tell user
             display = [(letter.replace(letter, '_')) if letter not in correct_letters else letter for letter in file]
             print(display)
-        print(f'Letters already guessed:{incorrect_letters + correct_letters}\n')
+        print(f'''\nLetters already guessed:
+{incorrect_letters + correct_letters}\n''')
         # print concatenated list of letters already guessed
     print(f'Game over! The word was {file}.')
     # game ends when incorrect guesses is 8
@@ -106,7 +107,9 @@ def play_game():
     # establishes var to call make_letter_list with previous var as arg
     # print(letters_to_guess)
     # # prints letters of the randomly selected word as a list
-    print('\nWelcome to Mystery Word! On the screen is a list of spaces. Guess letters to complete the word. You have 8 incorrect guesses. Repeated or invalid guesses will not count against you.\n')
+    print('''\nWelcome to Mystery Word! On the screen is a list of spaces.
+Guess letters to complete the word. You have 8 incorrect guesses.
+Repeated or invalid guesses will not count against you.\n''')
     track_state(letters_to_guess)
     # calls track_state with previous variable as argument
 
