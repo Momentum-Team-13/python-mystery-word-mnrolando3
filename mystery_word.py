@@ -3,7 +3,7 @@ import random
 
 
 def open_doc():
-    doc = 'test-word.txt'
+    doc = 'words.txt'
     # print(f'Your doc is: {doc}')
     with open(doc) as open_doc:
         read_doc = open_doc.readlines()
@@ -64,10 +64,13 @@ def track_state(file):
                 else:
                     print('\nYou already guessed that. Try again.\n')
             else:
-                print(f'\n{lowercase_guess} is not in the word. \n')
-                incorrect_letters.append(lowercase_guess)
-                # if guess is not in file
-                # add to incorrect letters list
+                if lowercase_guess not in incorrect_letters:
+                    print(f'\n{lowercase_guess} is not in the word. \n')
+                    incorrect_letters.append(lowercase_guess)
+                    # if guess is not in file
+                    # add to incorrect letters list
+                else:
+                    print('\nYou already guessed that. Try again.\n')
         else:
             print('\nThat guess wasn\'t valid. Please try again.\n')
             # if submitted guess is not alphabetic or one character
@@ -93,8 +96,8 @@ def play_game():
     # # prints the word randomly selected by the pick_word function
     letters_to_guess = make_letter_list(computer_word)
     # establishes var to call make_letter_list with previous var as arg
-    print(letters_to_guess)
-    # prints letters of the randomly selected word as a list
+    # print(letters_to_guess)
+    # # prints letters of the randomly selected word as a list
     track_state(letters_to_guess)
     # calls track_state with previous variable as argument
 
